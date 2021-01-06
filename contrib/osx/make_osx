@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Parameterize
-PYTHON_VERSION=3.7.9
+PYTHON_VERSION=3.7.8
 BUILDDIR=/tmp/electrum-build
-PACKAGE=Electrum
-GIT_REPO=https://github.com/spesmilo/electrum
+PACKAGE=Electrum-nix
+GIT_REPO=https://github.com/NixPlatform/electrum-nix
 
 export GCC_STRIP_BINARIES="1"
 
