@@ -127,7 +127,7 @@ class SettingsDialog(WindowModalDialog):
         tx_widgets.append((batch_rbf_cb, None))
 
         # lightning
-        lightning_widgets = []
+        # lightning_widgets = []
 
         help_local_wt = _("""If this option is checked, Electrum will
 run a local watchtower and protect your channels even if your wallet is not
@@ -138,7 +138,7 @@ open. For this to work, your computer needs to be online regularly.""")
         def on_local_wt_checked(x):
             self.config.set_key('run_local_watchtower', bool(x))
         local_wt_cb.stateChanged.connect(on_local_wt_checked)
-        lightning_widgets.append((local_wt_cb, None))
+        # lightning_widgets.append((local_wt_cb, None))
 
         help_persist = _("""If this option is checked, Electrum will persist after
 you close all your wallet windows, and the Electrum icon will be visible in the taskbar.
@@ -149,7 +149,7 @@ Use this if you want your local watchtower to keep running after you close your 
         def on_persist_checked(x):
             self.config.set_key('persist_daemon', bool(x))
         persist_cb.stateChanged.connect(on_persist_checked)
-        lightning_widgets.append((persist_cb, None))
+        # lightning_widgets.append((persist_cb, None))
 
         help_remote_wt = _("""To use a remote watchtower, enter the corresponding URL here""")
         remote_wt_cb = QCheckBox(_("Use a remote watchtower"))
@@ -166,7 +166,7 @@ Use this if you want your local watchtower to keep running after you close your 
             url = self.watchtower_url_e.text() or None
             watchtower_url = self.config.set_key('watchtower_url', url)
         self.watchtower_url_e.editingFinished.connect(on_wt_url)
-        lightning_widgets.append((remote_wt_cb, self.watchtower_url_e))
+        # lightning_widgets.append((remote_wt_cb, self.watchtower_url_e))
 
         msg = _('OpenAlias record, used to receive coins and to sign payment requests.') + '\n\n'\
               + _('The following alias providers are available:') + '\n'\
@@ -233,6 +233,7 @@ Use this if you want your local watchtower to keep running after you close your 
         gui_widgets.append((colortheme_label, colortheme_combo))
 
         updatecheck_cb = QCheckBox(_("Automatically check for software updates"))
+        updatecheck_cb.setEnabled(False)
         updatecheck_cb.setChecked(bool(self.config.get('check_updates', False)))
         def on_set_updatecheck(v):
             self.config.set_key('check_updates', v == Qt.Checked, save=True)
@@ -441,7 +442,7 @@ Use this if you want your local watchtower to keep running after you close your 
         tabs_info = [
             (gui_widgets, _('General')),
             (tx_widgets, _('Transactions')),
-            (lightning_widgets, _('Lightning')),
+            # (lightning_widgets, _('Lightning')),
             (fiat_widgets, _('Fiat')),
             (oa_widgets, _('OpenAlias')),
         ]

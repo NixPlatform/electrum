@@ -178,7 +178,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger):
         assert wallet, "no wallet"
         self.wallet = wallet
         if wallet.has_lightning():
-            self.wallet.config.set_key('show_channels_tab', True)
+            # self.wallet.config.set_key('show_channels_tab', True)
+            self.wallet.config.set_key('show_channels_tab', False)
 
         self.setup_exception_hook()
 
