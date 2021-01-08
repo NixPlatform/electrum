@@ -306,9 +306,11 @@ class CoinDesk(ExchangeBase):
 class CoinGecko(ExchangeBase):
 
     async def get_rates(self, ccy):
-        json = await self.get_json('api.coingecko.com', '/api/v3/exchange_rates')
-        return dict([(ccy.upper(), Decimal(d['value']))
-                     for ccy, d in json['rates'].items()])
+        json = await self.get_json('api.coingecko.com', '/api/v3/simple/price?ids=nix-platform&vs_currencies='+ccy.upper())
+        return dict([(ccy.upper(), Decimal(json['nix-platform'][ccy.lower()]))])
+        # json = await self.get_json('api.coingecko.com', '/api/v3/exchange_rates')
+        # return dict([(ccy.upper(), Decimal(d['value']))
+        #              for ccy, d in json['rates'].items()])
 
     def history_ccys(self):
         # CoinGecko seems to have historical data for all ccys it supports
